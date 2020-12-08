@@ -1,0 +1,57 @@
+
+
+
+select 
+IDENTIFICACION_TECNICO as tecnico, 
+FECHA_INICIO , 
+FECHA_FIN ,
+week(FECHA_INICIO) as semana, 
+TIMESTAMPDIFF(hour,FECHA_INICIO,FECHA_FIN) as horas ,
+ELT(WEEKDAY(FECHA_INICIO) + 1, 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo') AS DIA_SEMANA 
+from handyman.servicios where week(FECHA_INICIO) = 40 and IDENTIFICACION_TECNICO = '1111797508';
+
+select 
+IDENTIFICACION_TECNICO as tecnico, 
+FECHA_INICIO , 
+FECHA_FIN ,
+week(FECHA_INICIO) as semana, 
+TIMESTAMPDIFF(hour,FECHA_INICIO,FECHA_FIN) as horas ,
+date_format(FECHA_INICIO,'%h:%i') as formato_h_m_i,
+date_format(FECHA_FIN ,'%h:%i') as formato_h_m_f,
+ELT(WEEKDAY(FECHA_INICIO) + 1, 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo') AS DIA_SEMANA 
+from handyman.servicios 
+where week(FECHA_INICIO) = 40 and IDENTIFICACION_TECNICO = '1111797508' and  HOUR(FECHA_INICIO) BETWEEN 7 AND 20  ;
+
+select 
+IDENTIFICACION_TECNICO as tecnico, 
+FECHA_INICIO , 
+FECHA_FIN ,
+week(FECHA_INICIO) as semana, 
+TIMESTAMPDIFF(hour,FECHA_INICIO,FECHA_FIN) as horas ,
+date_format(FECHA_INICIO,'%h:%i') as formato_h_m_i,
+date_format(FECHA_FIN ,'%h:%i') as formato_h_m_f,
+ELT(WEEKDAY(FECHA_INICIO) + 1, 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo') AS DIA_SEMANA 
+from handyman.servicios 
+where week(FECHA_INICIO) = 40 and 
+IDENTIFICACION_TECNICO = '1111797508' and  
+HOUR(FECHA_INICIO) BETWEEN 20 AND 23 or
+HOUR(FECHA_INICIO) BETWEEN 1 AND 7  ;
+
+
+select 
+IDENTIFICACION_TECNICO as tecnico, 
+FECHA_INICIO , 
+FECHA_FIN ,
+week(FECHA_INICIO) as semana, 
+TIMESTAMPDIFF(hour,FECHA_INICIO,FECHA_FIN) as horas ,
+date_format(FECHA_INICIO,'%h:%i') as formato_h_m_i,
+date_format(FECHA_FIN ,'%h:%i') as formato_h_m_f,
+WEEKDAY(FECHA_INICIO),
+ELT(WEEKDAY(FECHA_INICIO) + 1, 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo') AS DIA_SEMANA 
+from handyman.servicios 
+where week(FECHA_INICIO) = 40 and 
+IDENTIFICACION_TECNICO = '1111797508' and 
+WEEKDAY(FECHA_INICIO) = 6;
+
+
+
